@@ -23,7 +23,8 @@ def runner(directory, extraconfig, configfile):
         "--drmaa-log-dir", directory + "/cluster_logs",
         "--jobs", 100,
         "--max-jobs-per-second", 10,
-        "--cluster-config", "cluster_settings.yaml"
+        "--cluster-config", "cluster_settings.yaml",
+        "--use-conda"
     ]
 
     subprocess.run([str(arg) for arg in args])
