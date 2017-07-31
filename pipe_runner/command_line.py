@@ -8,7 +8,8 @@ import click
               help="string containing additional config parameters")
 @click.option("--configfile", "-c", type=click.Path(exists=True),
               help="path to an additional config file containing run-specific parameters") 
-def runner(directory, extraconfig, configfile):
+@click.argument("targets", nargs=-1)
+def runner(directory, extraconfig, configfile, targets):
     args = ["snakemake", "--directory", directory]
     
     if extraconfig is not None:
@@ -26,5 +27,9 @@ def runner(directory, extraconfig, configfile):
         "--cluster-config", "cluster_settings.yaml",
         "--use-conda"
     ]
+
+    if targets is not None and len(targets) > 0:
+        for target in targets:
+            args.append(target)
 
     subprocess.run([str(arg) for arg in args])
