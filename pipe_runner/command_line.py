@@ -1,5 +1,6 @@
 import subprocess
 import click
+import os
 
 @click.command(short_help="Snakemake pipeline helper")
 @click.option("--directory", "-d", type=click.Path(), default="output",
@@ -21,10 +22,10 @@ def runner(directory, extraconfig, configfile, targets):
     args += [
         "--latency-wait", 90,
         "--drmaa", " -N preprocessor -pe BWA {cluster.threads} -l h_vmem={cluster.vmem} -q all.q -cwd -V -j Y",
-        "--drmaa-log-dir", directory + "/cluster_logs",
+        "--drmaa-log-dir", os.path.join(directory, "cluster_logs"),
         "--jobs", 100,
         "--max-jobs-per-second", 10,
-        "--cluster-config", "cluster_settings.yaml",
+        "--cluster-config", os.path.join(os.getcwd(), "cluster_settings.yaml"),
         "--use-conda"
     ]
 
