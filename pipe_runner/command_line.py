@@ -5,19 +5,19 @@ import os
 @click.command(short_help="Snakemake pipeline helper")
 @click.option("--directory", "-d", type=click.Path(), default="output",
               help="Directory for pipeline output")
-@click.option("--extraconfig", "-e", type=click.STRING, 
+@click.option("--extraconfig", "-e", type=click.STRING, multiple=True, 
               help="string containing additional config parameters")
 @click.option("--configfile", "-c", type=click.Path(exists=True),
               help="path to an additional config file containing run-specific parameters") 
 @click.argument("targets", nargs=-1)
 def runner(directory, extraconfig, configfile, targets):
-    args = ["snakemake", "--directory", directory]
+    args = ["snakemake", "-p", "--directory", directory]
     
-    if extraconfig is not None:
-        args += ["--config", extraconfig]
-
     if configfile is not None:
         args += ["--configfile", configfile]
+    
+    if len(extraconfig):
+        args += ["--config"] + list(extraconfig)
 
     args += [
         "--latency-wait", 90,
