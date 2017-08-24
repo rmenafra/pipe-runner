@@ -26,7 +26,8 @@ def runner(directory, extraconfig, configfile, targets):
         "--jobs", 100,
         "--max-jobs-per-second", 10,
         "--cluster-config", os.path.join(os.getcwd(), "cluster_settings.yaml"),
-        "--use-conda"
+        "--use-conda",
+        "--conda-prefix", os.path.join(os.getcwd(), ".conda")
     ]
 
     if targets is not None and len(targets) > 0:
