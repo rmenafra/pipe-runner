@@ -3,6 +3,8 @@ import click
 import os
 
 @click.command(short_help="Snakemake pipeline helper")
+@click.option("--snakefile", "-s", type=click.Path(exists=True),
+              help="path to the snakemake file to be run")
 @click.option("--directory", "-d", type=click.Path(), default="output",
               help="Directory for pipeline output")
 @click.option("--extraconfig", "-e", type=click.STRING, multiple=True, 
@@ -10,8 +12,11 @@ import os
 @click.option("--configfile", "-c", type=click.Path(exists=True),
               help="path to an additional config file containing run-specific parameters") 
 @click.argument("targets", nargs=-1)
-def runner(directory, extraconfig, configfile, targets):
+def runner(snakefile, directory, extraconfig, configfile, targets):
     args = ["snakemake", "-p", "--directory", directory]
+
+    if snakefile is not None:
+        args += ["--snakefile", snakefile]
     
     if configfile is not None:
         args += ["--configfile", configfile]
