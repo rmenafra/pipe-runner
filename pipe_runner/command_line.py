@@ -2,7 +2,11 @@ import subprocess
 import click
 import os
 
-@click.command(short_help="Snakemake pipeline helper")
+@click.command(context_settings=dict(
+    ignore_unknown_options=True,
+    ),
+    short_help="Snakemake pipeline helper"
+)
 @click.option("--snakefile", "-s", type=click.Path(exists=True),
               help="path to the snakemake file to be run")
 @click.option("--directory", "-d", type=click.Path(), default="output",
@@ -11,8 +15,8 @@ import os
               help="string containing additional config parameters")
 @click.option("--configfile", "-c", type=click.Path(exists=True),
               help="path to an additional config file containing run-specific parameters") 
-@click.argument("targets", nargs=-1)
-def runner(snakefile, directory, extraconfig, configfile, targets):
+@click.argument('additional_args', nargs=-1, type=click.UNPROCESSED)
+def runner(snakefile, directory, extraconfig, configfile, additional_args):
     args = ["snakemake", "-p", "--directory", directory]
 
     if snakefile is not None:
@@ -35,8 +39,6 @@ def runner(snakefile, directory, extraconfig, configfile, targets):
         "--conda-prefix", os.path.join(os.getcwd(), ".conda")
     ]
 
-    if targets is not None and len(targets) > 0:
-        for target in targets:
-            args.append(target)
+    args += list(additional_args)
 
     subprocess.run([str(arg) for arg in args])
