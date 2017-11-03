@@ -29,7 +29,7 @@ def runner(snakefile, directory, extraconfig, configfile, additional_args):
         args += ["--config"] + list(extraconfig)
 
     args += [
-        "--latency-wait", 90,
+        "--latency-wait", 120,
         "--drmaa", " -N preprocessor -pe BWA {cluster.threads} -l h_vmem={cluster.vmem} -q all.q -cwd -V -j Y",
         "--drmaa-log-dir", os.path.join(directory, "cluster_logs"),
         "--jobs", 100,
