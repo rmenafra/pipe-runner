@@ -14,9 +14,11 @@ import os
 @click.option("--extraconfig", "-e", type=click.STRING, multiple=True, 
               help="string containing additional config parameters")
 @click.option("--configfile", "-c", type=click.Path(exists=True),
-              help="path to an additional config file containing run-specific parameters") 
+              help="path to an additional config file containing run-specific parameters")
+@click.option("--clusterconfig", "-cl", type=click.Path(exists=True),
+              help="path to the cluster configuration file")
 @click.argument('additional_args', nargs=-1, type=click.UNPROCESSED)
-def runner(snakefile, directory, extraconfig, configfile, additional_args):
+def runner(snakefile, directory, extraconfig, configfile, clusterconfig, additional_args):
     args = ["snakemake", "-p", "--directory", directory]
 
     if snakefile is not None:
@@ -24,6 +26,13 @@ def runner(snakefile, directory, extraconfig, configfile, additional_args):
     
     if configfile is not None:
         args += ["--configfile", configfile]
+
+    if clusterconfig is None:
+        cluster_file = os.path.join(os.getcwd(), "cluster_settings.yaml")
+    else:
+        cluster_file = clusterconfig
+
+    args += ["--cluster-config", cluster_file]
     
     if len(extraconfig):
         args += ["--config"] + list(extraconfig)
@@ -34,7 +43,6 @@ def runner(snakefile, directory, extraconfig, configfile, additional_args):
         "--drmaa-log-dir", os.path.join(directory, "cluster_logs"),
         "--jobs", 100,
         "--max-jobs-per-second", 10,
-        "--cluster-config", os.path.join(os.getcwd(), "cluster_settings.yaml"),
         "--use-conda",
         "--conda-prefix", os.path.join(os.getcwd(), ".conda")
     ]

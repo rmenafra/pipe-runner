@@ -11,13 +11,14 @@ pip install git+git@git.lumc.nl:PharmacogenomicsPipe/pipe_runner.git
 ## Usage
 
 ```
-Usage: pipe-runner [OPTIONS] [TARGETS]...
+Usage: pipe-runner [OPTIONS] [ADDITIONAL_ARGS]...
 
 Options:
-  -s, --snakefile PATH    path to the snakemake file to be run
-  -d, --directory PATH    Directory for pipeline output
-  -e, --extraconfig TEXT  string containing additional config parameters
-  -c, --configfile PATH   path to an additional config file containing run-
-                          specific parameters
-  --help                  Show this message and exit.
+  -s, --snakefile PATH       path to the snakemake file to be run
+  -d, --directory PATH       Directory for pipeline output
+  -e, --extraconfig TEXT     string containing additional config parameters
+  -c, --configfile PATH      path to an additional config file containing run-
+                             specific parameters
+  -cl, --clusterconfig PATH  path to the cluster configuration file
+  --help                     Show this message and exit.
 ```
