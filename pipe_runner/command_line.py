@@ -17,7 +17,8 @@ import os
               help="path to an additional config file containing run-specific parameters")
 @click.option("--clusterconfig", "-cl", type=click.Path(exists=True),
               help="path to the cluster configuration file")
-@click.option("--retries", "-r", type=int, default=3)
+@click.option("--retries", "-r", type=int, default=3,
+              help="Number of times to retry a failed pipeline stage")
 @click.argument('additional_args', nargs=-1, type=click.UNPROCESSED)
 def runner(snakefile, directory, extraconfig, configfile, clusterconfig, retries, additional_args):
     args = ["snakemake", "-p", "--directory", directory]

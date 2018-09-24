@@ -20,5 +20,6 @@ Options:
   -c, --configfile PATH      path to an additional config file containing run-
                              specific parameters
   -cl, --clusterconfig PATH  path to the cluster configuration file
+  -r, --retries INTEGER
   --help                     Show this message and exit.
 ```
