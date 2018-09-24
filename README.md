@@ -20,6 +20,6 @@ Options:
   -c, --configfile PATH      path to an additional config file containing run-
                              specific parameters
   -cl, --clusterconfig PATH  path to the cluster configuration file
-  -r, --retries INTEGER
+  -r, --retries INTEGER      Number of times to retry a failed pipeline stage
   --help                     Show this message and exit.
 ```
