@@ -4,14 +4,16 @@ setup(
     name="pipe_runner",
     version="0.0.1",
     description="Simple utility for running Snakemake pipelines on the LUMC SGE cluster",
-    autor="Guy Allard, LUMC",
+    author="Guy Allard, LUMC",
     author_email="guyallard01 at gmail dot com",
     url="https://github.com/lumc-pgx/pipe-runner",
     license="MIT",
     platforms=['linux'],
     packages=["pipe_runner"],
     install_requires=[
-        'click'
+        'click>=7.0',
+        'drmaa',
+        'snakemake>=5.0.0',
     ],
     entry_points={
         "console_scripts": ['pipe-runner=pipe_runner.command_line:runner']

@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.5
+  - drmaa=0.7
+  - snakemake-minimal=5.3.0
+  - click=7.0
