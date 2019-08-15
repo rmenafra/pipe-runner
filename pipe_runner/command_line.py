@@ -4,6 +4,7 @@ import os
 
 @click.command(context_settings=dict(
     ignore_unknown_options=True,
+    help_option_names=["-h", "--help"]
     ),
     short_help="Snakemake pipeline helper"
 )
