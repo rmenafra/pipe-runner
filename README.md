@@ -5,7 +5,7 @@ This package contains a simple command line helper for running Snakemake workflo
 ## Installation
 
 ```
-pip install git+git@git.lumc.nl:PharmacogenomicsPipe/pipe_runner.git
+pip install git+https://github.com/lumc-pgx/pipe-runner.git
 ```
 
 ## Usage
