@@ -1,0 +1,72 @@
+# Pipeline Configuration
+
+# Flag to indicate which platform the data was sequenced on
+# SEQUENCING_PLATFORM must be either RS2 or SEQUEL
+SEQUENCING_PLATFORM: RS2
+
+# Path to the folders which contain the sequencing output for each cell
+SOURCE_DATA_PATHS:
+  - /path/to/raw/data1
+  - /path/to/raw/data2
+  
+# Path to barcode fasta file used for demultiplexing
+BARCODES: /path/to/barcodes.fasta  
+
+# Path to the genome fasta file to be used for mapping/alignment
+# The location of this file should be writable so that indexes can be created
+GENOME: /path/to/genome.fasta
+
+# Path to the ensembl annotation file for the genome
+ANNOTATIONS: /path/to/ensembl/annotations.gtf
+
+# path to the gene definition file(s)
+LOCI:
+  - /path/to/locus/definition/file
+
+# params for individual stages
+# to disable a stage, remove its parameters
+STAGE_PARAMS:
+  CCS:
+    minLength: 1000
+    maxLength: 10000
+    minPasses: 2
+    minPredictedAccuracy: 0.75
+    numThreads: 2
+
+  LIMA:
+    same: True           # symmetric barcoding
+    num-threads: 4       # number of threads
+    dump-clips: True     # save the clipped adapters
+
+  CCS_AMPLICON:
+    cluster-inflation: 1.4
+    cluster-percentile: 10
+    cluster-size-threshold: 0.2
+    consensus-fraction: 0.25
+    forward-primer: GCAGTCGAACATGTAGCTGACTCAGGTCACATGGCAGCTGCCATACAATCCACCTG
+    max-ccs-length: 7000
+    max-cluster-size: 300
+    max-homopolymer: 2
+    max-phasing-seqs: 100
+    max-primer-dist: 5
+    min-ccs-length: 6000
+    min-ccs-passes: 10
+    min-ccs-qual: 0.95
+    min-haplotype-molecules: 10
+    min-variant-qual: 50
+    reverse-primer: TGGATCACTTGTGCAAGCATCACATCGTAGCGACTGAGCCCTGGGAGGTAGGTAG
+    trim-ends: 0
+    tsne-iterations: 5000
+    tsne-rate: 50
+    
+  HAPLOTYPER:
+    # ignore variants at start/end of sequence when determining haplotypes
+    ignoreBoundary: True
+
+  VARIANT_EFFECT:
+    # The location of the folder containing cache files for use by vep
+    vep_cache_dir: /path_to_vep/88
+    # The version of the cache to be used
+    vep_cache_version: 88
+    # ignore variants at start/end of sequence?
+    ignoreBoundary: True
