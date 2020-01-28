@@ -23,3 +23,23 @@ Options:
   -r, --retries INTEGER      Number of times to retry a failed pipeline stage
   -h, --help                 Show this message and exit.
 ```
+
+## Outputs
+The output of the pipeline includes the following folders
+
+```
+-	Annotation
+
+-	Haplotyping
+
+-	Phasing
+
+-	Structural variation
+
+-	Summary
+
+-	Variant calling
+
+-	Variant effect
+
+```
