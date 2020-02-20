@@ -1,0 +1,18 @@
+[submodule "modules/haplotyping"]
+	path = modules/haplotyping
+	url = git@github.com:lumc-pgx/haplotyping.git
+[submodule "modules/structural_variation"]
+	path = modules/structural_variation
+	url = git@github.com:lumc-pgx/structural_variation.git
+[submodule "modules/variant_effects"]
+	path = modules/variant_effects
+	url = git@github.com:lumc-pgx/variant_effects.git
+[submodule "modules/variant-calling"]
+	path = modules/variant-calling
+	url = git@github.com:lumc-pgx/variant-calling.git
+[submodule "modules/preprocessor"]
+	path = modules/preprocessor
+	url = git@github.com:lumc-pgx/preprocessor.git
+[submodule "modules/phasing"]
+	path = modules/phasing
+	url = git@github.com:lumc-pgx/phasing.git
