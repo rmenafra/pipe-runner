@@ -22,6 +22,11 @@ Options:
   -cl, --clusterconfig PATH  path to the cluster configuration file
   -r, --retries INTEGER      Number of times to retry a failed pipeline stage
   -h, --help                 Show this message and exit.
+
+Example:
+pipe-runner -s Snakefile -d output_dir -c run_config.yaml -cl cluster_settings.yaml
+
+Modify the run_config.yaml and cluster_settings.yaml according to the location of your data and run parameters.
 ```
 
 ## Outputs
