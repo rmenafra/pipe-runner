@@ -1,6 +1,6 @@
 # pipe-runner
 
-This package contains a simple command line helper for running Snakemake workflows on the Shark cluster using sensible default values.  
+This package contains a simple command line helper for running Snakemake workflows on a high performance computing cluster using sensible default values.  
 
 ## Installation
 
@@ -27,6 +27,7 @@ Example:
 pipe-runner -s Snakefile -d output_dir -c run_config.yaml -cl cluster_settings.yaml
 
 Modify the run_config.yaml and cluster_settings.yaml according to the location of your data and run parameters.
+The CYP2D6_locus_config.yaml is an example of locus definition file indicated in the run_config.yaml and should be changed according to the gene of interest.
 ```
 
 ## Outputs
